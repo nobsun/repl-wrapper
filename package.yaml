@@ -1,0 +1,80 @@
+name:                repl-wrapper
+version:             0.1.0.0
+github:              "nobsun/repl-wrapper"
+license:             BSD3
+author:              "Nobuo Yamashita"
+maintainer:          "nobsun@gmail.com"
+copyright:           "Copyright: (c) 2021 Nobuo Yamashita"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Experiment
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/nobsun/repl-wrapper#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- unicode-show
+- markdown-unlit
+- doctest
+- bytestring
+- utf8-string
+- hspec
+- hpack
+- main-tester
+- process
+- pipes
+
+library:
+  source-dirs: src
+
+executables:
+  ghciw:
+    main:                ghciw.hs
+    source-dirs:         app
+    dependencies:
+    - repl-wrapper
+  dumbw:
+    main:                dumbw.hs
+    source-dirs:         app
+    dependencies:
+    - repl-wrapper
+  dumb-repl:
+    main:                dumb-repl.hs
+    source-dirs:         app
+    dependencies:
+    - repl-wrapper
+  catn:
+    main:                catn.hs
+    source-dirs:         app
+    dependencies:
+    - repl-wrapper
+
+tests:
+  repl-wrapper-test:
+    main:                spec.hs
+    source-dirs:         test
+    # ghc-options:
+    # - -threaded
+    # - -rtsopts
+    # - -with-rtsopts=-N
+    dependencies:
+    - repl-wrapper
+    - hspec
+
+  repl-wrapper-doctest:
+    main:                doctests.hs
+    source-dirs:         test
+    # ghc-options:
+    # - -threaded
+    # - -rtsopts
+    # - -with-rtsopts=-N
+    dependencies:
+    - repl-wrapper
