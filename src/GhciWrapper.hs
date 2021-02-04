@@ -11,7 +11,7 @@ import Utils
 wrapper :: FilePath -> IO ()
 wrapper fp = do
     { (recvByRepl, sendToRepl, recvFromRepl, sendByRepl) <- initHandles
-    ; let cp = mkCreateProcess ("stack exec -- ghci " ++ fp) (recvByRepl, sendByRepl)
+    ; let cp = mkCreateProcess (cmdline ++ " " ++ fp) (recvByRepl, sendByRepl)
     ; cl <- createProcess cp
     ; hGetUntil recvFromRepl prompt >>= putStr
     ; runEffect (inputLn >-> takeUntil' isQuitCmd 
@@ -41,3 +41,6 @@ isQuitCmd str = case words str of
 
 prompt :: String
 prompt = ">>> "
+
+cmdline :: String
+cmdline = "stack exec -- ghci"
