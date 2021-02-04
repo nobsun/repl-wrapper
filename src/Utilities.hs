@@ -1,10 +1,23 @@
-module Utils where
+module Utilities where
 
-import Control.Monad
+import Control.Monad ( unless )
 import GHC.IO.Encoding ( utf8 )
 import System.IO
+    ( utf8,
+      hIsEOF,
+      hSetBuffering,
+      hSetEncoding,
+      stdout,
+      hGetChar,
+      hPutStrLn,
+      BufferMode(NoBuffering),
+      Handle )
 import System.Process
-import Pipes
+    ( shell,
+      createPipe,
+      CreateProcess(std_in, std_out, std_err),
+      StdStream(UseHandle) )
+import Pipes ( await, yield, MonadIO(liftIO), Consumer, Pipe )
 
 initHandles :: IO (Handle, Handle, Handle, Handle)
 initHandles = do

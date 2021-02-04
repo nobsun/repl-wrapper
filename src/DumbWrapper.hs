@@ -5,7 +5,7 @@ import Pipes
 import System.IO
 import System.Process
 
-import Utils
+import Utilities
 
 wrapper :: FilePath -> IO ()
 wrapper _ = do

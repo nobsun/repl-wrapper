@@ -6,7 +6,7 @@ import Pipes
 import System.IO
 import System.Process
 
-import Utils
+import Utilities
 
 wrapper :: FilePath -> IO ()
 wrapper fp = do
@@ -27,8 +27,13 @@ inputLn = do
     ; unless eof $ do
         { str <- lift getLine
         ; case words str of
-              [cmd] | cmd `elem` [":r", ":reload"] -> yield ":e"
-              _                                    -> yield str
+              [cmd]    
+                | cmd `elem` [":r", ":reload"] 
+                -> yield ":e"
+              [cmd,fp]
+                | cmd `elem` [":l", ":load"]   
+                -> yield (":e" ++ " " ++ fp)
+              _ -> yield str
         ; inputLn
         }
     }
