@@ -12,11 +12,6 @@ wrapper :: FilePath -> IO ()
 wrapper fp = do
     { (recvByRepl, sendToRepl, recvFromRepl, sendByRepl) <- initHandles
     ; let cp = mkCreateProcess ("stack exec -- ghci " ++ fp) (recvByRepl, sendByRepl)
-            --    (shell $ "stack exec -- ghci " ++ fp) 
-            --     { std_in = UseHandle recvByRepl
-            --     , std_out = UseHandle sendByRepl
-            --     , std_err = UseHandle sendByRepl
-            --     }
     ; cl <- createProcess cp
     ; hGetUntil recvFromRepl prompt >>= putStr
     ; runEffect (inputLn >-> takeUntil' isQuitCmd 
