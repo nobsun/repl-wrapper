@@ -1,4 +1,4 @@
-module Utilities where
+module Utils where
 
 import Control.Monad ( unless )
 import Data.Bool ( bool )
