@@ -48,4 +48,4 @@ prompt :: String
 prompt = ">>> "
 
 cmdline :: String
-cmdline = "stack exec -- ghci"
+cmdline = "stack exec -- ghci -fshow-loaded-modules"

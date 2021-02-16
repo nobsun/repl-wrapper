@@ -1,6 +1,7 @@
 module Utilities where
 
 import Control.Monad ( unless )
+import Data.Bool ( bool )
 import GHC.IO.Encoding ( utf8 )
 import System.IO
     ( utf8,
