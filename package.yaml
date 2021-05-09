@@ -9,6 +9,7 @@ copyright:           "Copyright: (c) 2021 Nobuo Yamashita"
 extra-source-files:
 - README.md
 - ChangeLog.md
+- ghci.sh
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
